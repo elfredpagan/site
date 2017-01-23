@@ -1,3 +1,41 @@
-languageCode = "en-us"
+baseurl = "https://elfredpagan.com/"
+languageCode = "en-US"
 title = "Elfred Pagán"
-baseurl = "http://elfredpagan.com/"
+# Enable Google Analytics by entering your tracking code
+theme = "hugo-sustain"
+
+[permalinks]
+  post = "/:year/:month/:day/:slug"
+
+[params]
+  avatar = "profile.png"
+  author = "Elfred Pagán"
+  description = "Engineer"
+
+  # Custom assets can be linked with their paths relative to static/
+  custom_css = []
+  custom_js  = []
+
+[social]
+  Github        = "elfredpagan"
+  Email         = "elfred@elfredpagan.com"
+  Twitter       = "elfredpagan"
+  LinkedIn      = "elfred"
+  Stackoverflow = "elfred"
+
+## Main Menu
+[[menu.main]]
+  name = "blog"
+  weight = 100
+  identifier = "blog"
+  url = "/blog/"
+[[menu.main]]
+  name = "projects"
+  identifier = "projects"
+  weight = 200
+  url = "/projects/"
+[[menu.main]]
+  name = "resume"
+  identifier = "resume"
+  weight = 300
+  url = "/resume/"
