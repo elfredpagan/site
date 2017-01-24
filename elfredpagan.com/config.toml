@@ -1,7 +1,6 @@
-baseurl = "https://elfredpagan.com/"
+baseurl = "http://elfredpagan.com/"
 languageCode = "en-US"
 title = "Elfred Pagán"
-# Enable Google Analytics by entering your tracking code
 theme = "hugo-sustain"
 
 [permalinks]
@@ -21,7 +20,7 @@ theme = "hugo-sustain"
   Email         = "elfred@elfredpagan.com"
   Twitter       = "elfredpagan"
   LinkedIn      = "elfred"
-  Stackoverflow = "elfred"
+  Stackoverflow = "users/12636/elfred"
 
 ## Main Menu
 [[menu.main]]

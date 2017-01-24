@@ -1,0 +1,8 @@
+# the database image
+web:
+  image: "nginx:alpine"
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - "./elfredpagan.com/public:/usr/share/nginx/html"
