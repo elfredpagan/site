@@ -1,4 +1,4 @@
-baseurl = "localhost"
+baseurl = "elfredpagan.com"
 languageCode = "en-US"
 title = "Elfred Pagán"
 theme = "hugo-sustain"
