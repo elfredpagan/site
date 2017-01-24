@@ -1,4 +1,4 @@
-baseurl = "http://elfredpagan.com/"
+baseurl = "localhost"
 languageCode = "en-US"
 title = "Elfred Pagán"
 theme = "hugo-sustain"
@@ -22,19 +22,19 @@ theme = "hugo-sustain"
   LinkedIn      = "elfred"
   Stackoverflow = "users/12636/elfred"
 
-## Main Menu
-[[menu.main]]
-  name = "blog"
-  weight = 100
-  identifier = "blog"
-  url = "/blog/"
-[[menu.main]]
-  name = "projects"
-  identifier = "projects"
-  weight = 200
-  url = "/projects/"
-[[menu.main]]
-  name = "resume"
-  identifier = "resume"
-  weight = 300
-  url = "/resume/"
+# ## Main Menu
+# [[menu.main]]
+#   name = "blog"
+#   weight = 100
+#   identifier = "blog"
+#   url = "/blog/"
+# [[menu.main]]
+#   name = "projects"
+#   identifier = "projects"
+#   weight = 200
+#   url = "/projects/"
+# [[menu.main]]
+#   name = "resume"
+#   identifier = "resume"
+#   weight = 300
+#   url = "/resume/"
