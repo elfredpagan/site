@@ -1,4 +1,4 @@
-baseurl = "elfredpagan.com"
+baseurl = "http://elfredpagan.com"
 languageCode = "en-US"
 title = "Elfred Pagán"
 theme = "hugo-sustain"
