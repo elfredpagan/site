@@ -23,7 +23,7 @@ enableRobotsTXT = true
 [params]
 author = "Elfred Pagán"
 intro = "Engineer/Amateur Cook"
-description = "Software Engineer/Amateur Cook"
+description = ""
 authorimage = "profile.png"
 dateformat = "Jan 2, 2006"
 
