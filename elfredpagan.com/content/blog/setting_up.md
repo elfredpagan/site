@@ -2,9 +2,8 @@
 tags = ["ops"]
 description = "What did I do to set up this site."
 title = "Setting up"
-date = "2017-01-25T17:35:04-06:00"
+date = "2017-01-29T17:35:04-06:00"
 categories = ["development"]
-draft = true
 +++
 
 I figured a good way of kicking off this site would be writing how it's set up.
@@ -20,7 +19,7 @@ root login in ssh.
 
 first things first:
 
-```
+```bash
 root@ubuntu:~# adduser myuser
 root@ubuntu:~# usermod -aG sudo myuser
 ```
@@ -28,7 +27,7 @@ root@ubuntu:~# usermod -aG sudo myuser
 At this point, I log out as root and log in as my new user. I then disabled root
 login in the sshd config:
 
-```
+```bash
 # /etc/ssh/sshd_config
 ...
 # Authentication:
@@ -40,12 +39,12 @@ StrictModes yes
 
 And restarted sshd:
 
-```
+```bash
 myuser@ubuntu:~$ sudo /etc/init.d/ssh restart
 ```
 
 I then went on to install docker:
-```
+```bash
 myuser@ubuntu:~$ sudo apt-get install dmsetup && dmsetup mknodes
 myuser@ubuntu:~$ sudo curl -sSL https://get.docker.com/ | sh
 ```
@@ -56,19 +55,19 @@ myuser@ubuntu:~$ sudo usermod -aG docker elfredpagan
 ```
 
 and Installed docker compose:
-```
+```bash
 myuser@ubuntu:~$ sudo apt install docker-compose
 ```
 
 At this point I have a working docker and docker-compose installation.
 Now I installed Hugo.
-```
+```bash
 myuser@ubuntu:~$ wget https://github.com/spf13/hugo/releases/download/v0.18.1/hugo_0.18.1-64bit.deb
 myuser@ubuntu:~$ sudo dpkg -i hugo*.deb
 ```
 
 And pulled my repository
-```
+```bash
 myuser@ubuntu:~$ git clone $github_url:repository
 myuser#ubuntu:~$ cd repository
 ```

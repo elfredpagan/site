@@ -1,6 +1,6 @@
 ## Basic Configuration
 
-baseurl = "https://elfredpagan.com/"
+baseurl = "http://elfredpagan.com/"
 builddrafts = false
 canonifyurls = false
 languageCode = "en-US"
@@ -23,7 +23,7 @@ enableRobotsTXT = true
 [params]
 author = "Elfred Pagán"
 intro = "Engineer/Amateur Cook"
-description = "Hey y'all, I'm Elfred, software engineer and amateur cook living in austin TX. I mostly write iOS apps"
+description = "Software Engineer/Amateur Cook"
 authorimage = "profile.png"
 dateformat = "Jan 2, 2006"
 
