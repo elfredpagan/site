@@ -1,40 +1,65 @@
-baseurl = "http://elfredpagan.com/"
+## Basic Configuration
+
+baseurl = "https://elfredpagan.com/"
+builddrafts = false
+canonifyurls = false
 languageCode = "en-US"
+
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+
+author = "Elfred Pagán"
 title = "Elfred Pagán"
-theme = "hugo-sustain"
 
-[permalinks]
-  post = "/:year/:month/:day/:slug"
+theme = "hugo-goa"
 
+## Hugo Built-in Features
+# disqusShortname = "https-shenoybr-github-io-hugo-goa-demo" # Comment out to disable Disqus.
+# googleAnalytics = "XYZ"
+enableRobotsTXT = true
+
+## Site Settings
 [params]
-  avatar = "profile.png"
-  author = "Elfred Pagán"
-  description = "Engineer"
+author = "Elfred Pagán"
+intro = "Engineer/Amateur Cook"
+description = "Hey y'all, I'm Elfred, software engineer and amateur cook living in austin TX. I mostly write iOS apps"
+authorimage = "profile.png"
+dateformat = "Jan 2, 2006"
 
-  # Custom assets can be linked with their paths relative to static/
-  custom_css = []
-  custom_js  = []
+## Site Meta Settings
+[params.meta]
+description = "Personal site"
+keywords = "developer"
 
-[social]
-  Github        = "elfredpagan"
-  Email         = "elfred@elfredpagan.com"
-  Twitter       = "elfredpagan"
-  LinkedIn      = "elfred"
-  Stackoverflow = "users/12636/elfred"
+## Social Accounts
+[params.social]
+github = "elfredpagan"
+instagram = "elfredpagan"
+linkedin = "elfred"
+twitter = "elfredpagan"
+stackoverflow = "12636/elfred"
+email = "elfred@elfredpagan.com"
 
-# ## Main Menu
+## Extras
+[params.extra]
+copyright = "© 2017. Elfred Pagán. [Some Rights Reserved](http://creativecommons.org/licenses/by/3.0/)."
+poweredby = true
+hightlightjs = true
+
+## Main Menu
+[[menu.main]]
+    name = "blog"
+    weight = 100
+    identifier = "blog"
+    url = "/blog/"
+[[menu.main]]
+    name = "about"
+    identifier = "about"
+    weight = 200
+    url = "/about/"
 # [[menu.main]]
-#   name = "blog"
-#   weight = 100
-#   identifier = "blog"
-#   url = "/blog/"
-# [[menu.main]]
-#   name = "projects"
-#   identifier = "projects"
-#   weight = 200
-#   url = "/projects/"
-# [[menu.main]]
-#   name = "resume"
-#   identifier = "resume"
-#   weight = 300
-#   url = "/resume/"
+#     name = "coderag"
+#     identifier = "coderag"
+#     weight = 300
+#     url = "/coderag/"

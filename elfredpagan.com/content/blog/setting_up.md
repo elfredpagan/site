@@ -76,7 +76,7 @@ myuser#ubuntu:~$ cd repository
 My repository has a `site` folder that contains a Hugo site. Hugo builds your site in the `public`
 folder, so I have a docker-compose.yml file that looks as follows.
 
-```yaml
+```
 web:
   image: "nginx:alpine"
   ports:
