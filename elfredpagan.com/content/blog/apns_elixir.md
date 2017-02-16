@@ -1,11 +1,10 @@
 +++
 showcomments = true
 categories = ["development"]
-tags = ["elixir", "fresh_eyes"]
-draft = true
+tags = ["Elixir", "fresh eyes"]
 date = "2017-02-15T15:31:01-06:00"
 title = "iOS Push Notifications in Elixir"
-description = "writing a simple elixir app to send push notifications to an iOS app"
+description = "writing a simple Elixir app to send push notifications"
 showpagemeta = true
 slug = ""
 comments = false
@@ -14,21 +13,18 @@ comments = false
 
 I'm currently playing with Elixir, but I don't have any strong product ideas, so
 I'm building generic infrastructure I might need later on. I have solved some of
-these problems with other languages, I find rebuilding this things a good way to
+these problems with other languages, I find rebuilding these things as a good way to
 familiarize myself with new languages and frameworks. The first thing I decided
 to build out is a push notification service.
 
 I'll mostly focus on using the legacy binary protocol in this implementation.
-There's a newer HTTP/2 variant and I have a version of that built in another
-branch, unfortunately I can't use that in a Pheonix application I'm working on
-due to it requiring newer versions of libraries that Phoenix uses. The
-repository is available [here](https://github.com/elfredpagan).
+The repository is available [here](https://github.com/elfredpagan).
 
 ## Getting started
 
-The first thing to do is use `mix` to create an elixir project. I'm using an OTP
-process to send the push notifications so we want a supervisor to manage the
-processes. The command to do this is:
+The first thing to do is use `mix` to create an Elixir project. I'm using OTP
+processes to send the push notifications so we want a supervisor to manage the
+these. The command to do this is:
 
 ```
 % mix new apns --sup
@@ -41,9 +37,6 @@ add your processes to the children list to have them managed by the supervisor.
 # lib/apns.ex
 
 defmodule APNS do
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
-  @moduledoc false
 
   use Application
 
@@ -56,8 +49,6 @@ defmodule APNS do
       # worker(APNS.Worker, [arg1, arg2, arg3]),
     ]
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: APNS.Supervisor]
     Supervisor.start_link(children, opts)
   end
@@ -83,19 +74,19 @@ config :apns, :config,
   feedback_handler: APNS.FeedbackHandler
 
 ```
-This defines a keyword list for the apns application. In it, I specify a few
-configuration values, including the host, port of the apns service, the certificate
+This defines a keyword list for the APNS application. In it, I specify a few
+configuration values: the host, port of the APNS service, the certificate
 and key locations and finally a feedback handler module to send back the error
 responses.
 
 ## Creating the OTP GenServer and managing an SSL connection
 
-I then created the OTP process that will manage our apns connection and send
+I then created the OTP process that will manage our APNS connection and send
 out the push notifications. I use the [Connection](https://github.com/fishcakez/connection)
 library that extends GenServer to support connecting, disconnecting and backs off
 in the case of errors.
 
-The first thing I do is implement `start_link` which is resonsible for starting
+The first thing I do is implement `start_link` which is responsible for starting
 the process. Here I read the configuration above, create an initial state
 map with the connection and SSL options we will use.
 
@@ -132,10 +123,10 @@ defmodule APNS.PushWorker do
 
   ...
 ```
-One interesting thing here is that I conver elixir strings to char lists. We
-use Erlang's SSL functionality and it expects character lists as inputs.
+One interesting thing here is that I convert Elixir strings to char lists. We
+use Erlang's SSL library and it expects character lists as inputs.
 
-When we call `Connection.start_link` the `init` method gets called. I implement
+When we call `Connection.start_link` the `init` method gets called back by OTP. I implement
 it as follows:
 ```
 def init(state) do
@@ -159,7 +150,7 @@ timeout: timeout} = state) do
 end
 ```
 
-If I create a connection, I add the socket to the process' state. Otherwise
+If I create a connection, I add the socket to the process state. Otherwise
 I back off, Connection tries again later. I follow these up with a few other
 methods to manage disconnecting and reconnecting as needed depending on errors
 and connectivity status. These are not relevant to APNS so you can look at the
@@ -167,7 +158,7 @@ repository for more info.
 
 ## Creating and transforming the notification object
 
-I then create an elixir struct to model my notification. I also create a set of
+I then create an Elixir struct to model my notification. I also create a set of
 methods to manipulate the fields in it. The file is in [lib/notification.ex](https://github.com/elfredpagan/apns/blob/master/lib/notification.ex) but
 the implementation allows us to manipulate a notification as follows:
 
@@ -186,11 +177,11 @@ push =
 Which I find quite nice. It reminds me of the [builder pattern](https://en.wikipedia.org/wiki/Builder_pattern).
 without the .build() call at the end. One important thing to note is that at
 every step of the way, we're creating a new notification struct since data is
-immutable in elixir.
+immutable in Elixir.
 
 ## Sending out a notification
 
-Once I had a model object, I need to structure the data to send through the
+Once I have a model object, I need to structure the data to send through the
 binary protocol. I create an encoder module to handle this work.
 
 ```
@@ -312,8 +303,6 @@ accomplish this. I update my `start` method as follows:
       :poolboy.child_spec(:apns_pool, pool_options, [])
     ]
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: APNS.Supervisor]
     Supervisor.start_link(children, opts)
   end
@@ -355,7 +344,7 @@ Interop between "newer" languages built on top of older VMs is always a bit jank
 Elixir and Erlang are not that different. You need to prefix Erlang modules with
 `:` and most Erlang modules expect character lists instead of "Strings" (which
   are just UTF binaries). Overall, the process is fairly seamless, but it's obvious
-  you are munging things to interop with something else. This bit me the mostly
+  you are munging things to interop with something else. This bit me the most
   when I was starting to try out http/2 libs for my other implementation.
 
 ### Working with Binaries
@@ -367,14 +356,14 @@ an array of bytes.
 ### Immutability
 
 I've worked with immutable model layers before, but that is the only option in
-elixir. Having to reassign to a variable can get a bit cumbersome sometimes, but
+Elixir. Having to reassign to a variable can get a bit cumbersome sometimes, but
 I do think it's worth it. I think if Elixir forces single assignment like Erlang,
 this would get tedious. The `|>` operator does help with cutting intermediate
 assigns while you transform your data set.
 
 ## Aside: Push Notifications through HTTP/2
 
-As mentioned above. I also implemented an HTTP/2 version of APNS. For this I used
+I also implemented an HTTP/2 version of APNS. For this I used
 [Gun](https://github.com/ninenines/gun) as an HTTP/2 client and [Joken](https://github.com/bryanjos/joken)
 to generate JSON Web Tokens. The sad thing is that I had to use the git version
 of Gun, which requires newer versions of cowlib and ranch. This conflicts with

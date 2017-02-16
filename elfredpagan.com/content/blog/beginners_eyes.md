@@ -2,7 +2,7 @@
 showpagemeta = true
 date = "2017-02-13T16:09:27-06:00"
 title = "Beginner's Eyes"
-tags = ["fresh_eyes"]
+tags = ["fresh eyes"]
 description = "Trying to work on new stuff with fresh eyes"
 comments = false
 draft = false
